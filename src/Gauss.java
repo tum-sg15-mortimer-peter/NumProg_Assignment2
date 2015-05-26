@@ -13,6 +13,8 @@ public class Gauss {
 		//TODO: Diese Methode ist zu implementieren
 		return new double[2];
 	}
+	
+	// added test comment
 
 	/**
 	 * Diese Methode soll die Loesung x des LGS A*x=b durch Gauss-Elimination mit
