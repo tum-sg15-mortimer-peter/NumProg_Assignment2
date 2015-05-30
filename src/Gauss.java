@@ -1,4 +1,4 @@
-
+import java.lang.*;
 
 public class Gauss {
 
@@ -10,11 +10,38 @@ public class Gauss {
 	 * b: Ein Vektor der Laenge n
 	 */
 	public static double[] backSubst(double[][] R, double[] b) {
+		
 		//TODO: Diese Methode ist zu implementieren
-		return new double[2];
+		double calc_b[] = new double[b.length];
+		double calc_R[][] = new double[R.length][R[0].length];
+		
+		// check for valid array lengths
+		if(R.length != b.length) {
+			return calc_b;	// empty array
+		}
+		
+		// copy array values to their calc variables to
+		// to not change the parameter values
+		
+		System.arraycopy(b,0,calc_b,0,b.length);
+		System.arraycopy(R,0,calc_R,0,R.length);
+		
+		double add = 0.0;
+		
+		for(int i = R.length-1; i >= 0; i--) {
+			for(int j = i-1; j >= 0; j--) {
+				add = (-1D) * (calc_R[i][j]/calc_R[i][i]);
+				if(add == 0D) {continue;}
+				calc_R[i][j] +=  calc_R[i][i]* add;
+				calc_b[j] +=  calc_b[i]* add;
+			}
+			calc_b[i] /= calc_R[i][i];
+		}
+		
+		return calc_b;
+		
 	}
 	
-	// added test comment
 
 	/**
 	 * Diese Methode soll die Loesung x des LGS A*x=b durch Gauss-Elimination mit
