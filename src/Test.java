@@ -35,7 +35,15 @@ public class Test {
 		
 		double testM2[][] = {{6}};
 		double testB2[] = {1D/6D};
-		double resultMB2[] = {1D/36D};
+		double resultMB2[] = {1/36D};
+		
+		double testM3[][] = {{0}};
+		double testB3[] = {1D/6D};
+		double resultMB3[] = {0};
+		
+		double testM4[][] = {{0}};
+		double testB4[] = {1D/6D, 0D};
+		double resultMB4[] = {0};
 
 		/******************************/
 		/* Test der Klasse Gauss */
@@ -79,6 +87,28 @@ public class Test {
 				Util.printVector(x);
 				System.out.println("            richtiges Ergebnis:");
 				Util.printVector(resultMB2);
+			}
+			
+			System.out.println("	Test fuer M3 * x = B3:\n");
+			x = Gauss.backSubst(testM3, testB3);
+			if(Util.vectorCompare(x, resultMB3)) {
+				System.out.println("		Richtiges Ergebnis zu M3 * x = B3\n");
+			} else {
+				System.out.println("    FEHLER: falsches Ergebnis:");
+				Util.printVector(x);
+				System.out.println("            richtiges Ergebnis:");
+				Util.printVector(resultMB3);
+			}
+			
+			System.out.println("	Test fuer M4 * x = B4:\n");
+			x = Gauss.backSubst(testM4, testB4);
+			if(Util.vectorCompare(x, resultMB4)) {
+				System.out.println("		Richtiges Ergebnis zu M4 * x = B4\n");
+			} else {
+				System.out.println("    FEHLER: falsches Ergebnis:");
+				Util.printVector(x);
+				System.out.println("            richtiges Ergebnis:");
+				Util.printVector(resultMB4);
 			}
 
 			System.out

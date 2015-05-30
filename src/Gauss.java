@@ -17,7 +17,8 @@ public class Gauss {
 		
 		// check for valid array lengths
 		if(R.length != b.length) {
-			return calc_b;	// empty array
+			double error[] = {0};
+			return error;
 		}
 		
 		// copy array values to their calc variables to
@@ -35,6 +36,12 @@ public class Gauss {
 				calc_R[i][j] +=  calc_R[i][i]* add;
 				calc_b[j] +=  calc_b[i]* add;
 			}
+			
+			if(calc_R[i][i] == 0) {
+				double error[] = {0};
+				return error;
+			}
+			
 			calc_b[i] /= calc_R[i][i];
 		}
 		
