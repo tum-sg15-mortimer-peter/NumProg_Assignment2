@@ -59,7 +59,71 @@ public class Gauss {
 	 */
 	public static double[] solve(double[][] A, double[] b) {
 		//TODO: Diese Methode ist zu implementieren
-		return new double[2];
+		double calc_b[] = new double[b.length];
+		double calc_A[][] = new double[A.length][A[0].length];
+				
+		// check for valid array lengths
+		if(A.length != b.length) {
+			double error[] = {0};
+			return error;
+		}
+				
+		// copy array values to their calc variables to
+		// to not change the parameter values
+				
+		System.arraycopy(b,0,calc_b,0,b.length);
+		System.arraycopy(A,0,calc_A,0,A.length);
+		
+		for(int i = 0; i < b.length-1; i++) {
+			// Pivot Suche
+			int pivot_index = i;
+			double pivot_element = calc_A[i][i];
+			for(int k = i; k < b.length; k++) {
+				if(Math.abs(calc_A[i][k]) > Math.abs(pivot_element)) {
+					pivot_index = k;
+					pivot_element = calc_A[i][k];
+				}
+			}
+			if(pivot_index != i) {	// check if even necessary
+
+				// switch pivot element line
+				double buffer = 0D;
+				for(int k = 0; k < b.length; k++) {
+					buffer = calc_A[k][i];
+					calc_A[k][i] = calc_A[k][pivot_index]; 
+					calc_A[k][pivot_index] = buffer;
+				}
+				
+				// also switch values in b
+				double b_buffer = 0D;
+				b_buffer = calc_b[i];
+				calc_b[i] = calc_b[pivot_index];
+				calc_b[pivot_index] = b_buffer;
+				
+			}
+			
+			// subtracting every row j > i by a(j,i)/a(i,i)
+			double divisor = calc_A[i][i];
+			if(divisor == 0) {
+				double error[] = {0};
+				return error;
+			}
+			for(int j = i+1; j < b.length; j++) {
+				double add = calc_A[i][j]/divisor;
+				for(int k = 0; k < b.length; k++) {
+					if(add != 0D) {
+						calc_A[k][j] -= calc_A[k][i]*add;
+					}
+				}
+				calc_b[j] -= calc_b[i]*add;
+				
+			}
+			
+		}
+		
+		return backSubst(calc_A,calc_b);
+		
+		
 	}
 
 	/**
