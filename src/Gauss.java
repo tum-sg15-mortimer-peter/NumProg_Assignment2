@@ -145,7 +145,88 @@ public class Gauss {
 	 */
 	public static double[] solveSing(double[][] A) {
 		//TODO: Diese Methode ist zu implementieren
-		return new double[2];
+		
+		double T [][];
+		double v [];
+		
+		if(A.length != A[0].length) {
+			double error[] = {0};
+			return error;
+		}
+		
+		double calc_A[][] = new double[A.length][A.length];
+		System.arraycopy(A,0,calc_A,0,A.length);
+		
+		for(int i = 0; i < A.length; i++) {
+			// Pivot Suche
+			int pivot_index = i;
+			double pivot_element = calc_A[i][i];
+			for(int k = i; k < A.length; k++) {
+				if(Math.abs(calc_A[i][k]) > Math.abs(pivot_element)) {
+					pivot_index = k;
+					pivot_element = calc_A[i][k];
+				}
+			}
+			// matrix can't be solved by Gauss anymore
+			if(pivot_element == 0) {
+				T = new double[i][i];
+				v = new double[i];
+				
+				// copy the values into the triangle T
+				for(int a = 0; a < i; a++) {
+					for(int b = 0; b < i; b++) {
+						T[a][b] = calc_A[a][b];
+					}
+				}
+				
+				// copy the values into the vector v
+				for(int a = 0; a < i; a++) {
+					v[a] = -1 * calc_A[i][a];
+				}
+				
+				double x[] = backSubst(T,v);
+				double result[] = new double[A.length];
+				for(int c = 0; c < x.length; c++) {
+					result[c] = x[c];
+				}
+				result[x.length] = 1;
+				// the rest is initialized as zero anyways in Java
+				return result;
+				
+			}
+			
+			if(pivot_index != i) {	// check if even necessary
+
+				// switch pivot element line
+				double buffer = 0D;
+				for(int k = 0; k < A.length; k++) {
+					buffer = calc_A[k][i];
+					calc_A[k][i] = calc_A[k][pivot_index]; 
+					calc_A[k][pivot_index] = buffer;
+				}
+							
+							
+			}
+						
+			// subtracting every row j > i by a(j,i)/a(i,i)
+			double divisor = calc_A[i][i];
+			if(divisor == 0) {
+				double error[] = {0};
+				return error;
+			}
+			for(int j = i+1; j < A.length; j++) {
+				double add = calc_A[i][j]/divisor;
+				for(int k = 0; k < A.length; k++) {
+					if(add != 0D) {
+						calc_A[k][j] -= calc_A[k][i]*add;
+					}
+				}	
+			}
+		}
+		
+		double error[] = {0};
+		return error;
+		
 	}
 
 	/**

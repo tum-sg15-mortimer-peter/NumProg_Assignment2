@@ -136,6 +136,7 @@ public class Test {
 			double testB7[] = {1,2,3};
 			double resultMB7[] = {1,1,1};
 			
+			
 			System.out.println("	Test fuer M5 * x = B5:\n");
 			x = Gauss.solve(testM5, testB5);
 			if(Util.vectorCompare(x, resultMB5)) {
@@ -168,6 +169,8 @@ public class Test {
 				System.out.println("            richtiges Ergebnis:");
 				Util.printVector(resultMB7);
 			}
+			
+			// A[][] = { { 1, 1 }, { 1, 1 } };
 
 			System.out
 					.println("  primitiver und unvollstaendiger Test der Methode solveSing");
@@ -183,6 +186,20 @@ public class Test {
 				Util.printVector(x);
 				System.out.println("            richtiges Ergebnis:");
 				Util.printVector(xA);
+			}
+			
+			double testM8[][] = {{1,1,2}, {3,-1,1}, {-1,3,3}};
+			double resultMB8[] = {-2,1,1}; 
+			
+			System.out.println("	Test fuer M8 * x = B8:\n");
+			x = Gauss.solveSing(testM8);
+			if(Util.vectorCompare(x, resultMB8)) {
+				System.out.println("		Richtiges Ergebnis zu M8 * x = B8\n");
+			} else {
+				System.out.println("    FEHLER: falsches Ergebnis:");
+				Util.printVector(x);
+				System.out.println("            richtiges Ergebnis:");
+				Util.printVector(resultMB8);
 			}
 			
 		}
