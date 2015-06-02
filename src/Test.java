@@ -218,8 +218,8 @@ public class Test {
 			 * Sie muessen entweder den gesamten absoluten Pfad angeben oder die
 			 * Umgebung entsprechend einrichten.
 			 */
-			lm.read("irgendwo.txt");
-
+			lm.read(".\\src\\webseiten\\irgendwo.txt");
+			
 			System.out
 					.println("  primitiver und unvollstaendiger Test der Methode buildMatrix");
 
@@ -233,7 +233,17 @@ public class Test {
 				System.out.println("            richtiges Ergebnis:");
 				Util.printMatrix(A0);
 			}
-
+			
+			// own additional test
+			
+			LinkMatrix lm2 = new LinkMatrix();
+			
+			lm2.read(".\\src\\webseiten\\test.txt");
+			
+			double A_test[][] = PageRank.buildProbabilityMatrix(lm2.L, 0.15);
+			System.out.println("buildMatrix for A_test (File: test.txt) :");
+			Util.printMatrix(A_test);
+			
 			System.out
 					.println("  primitiver und unvollstaendiger Test der Methode rank");
 			String r[] = PageRank.getSortedURLs(lm.urls, lm.L, 0.15);
