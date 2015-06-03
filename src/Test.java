@@ -137,6 +137,7 @@ public class Test {
 			double resultMB7[] = {1,1,1};
 			
 			
+			
 			System.out.println("	Test fuer M5 * x = B5:\n");
 			x = Gauss.solve(testM5, testB5);
 			if(Util.vectorCompare(x, resultMB5)) {
@@ -191,6 +192,9 @@ public class Test {
 			double testM8[][] = {{1,1,2}, {3,-1,1}, {-1,3,3}};
 			double resultMB8[] = {-2,1,1}; 
 			
+			double testM9[][] = {{1,2,-2}, {1,1,0}, {1,1,1}};
+			double resultMB9[] = {0, 0, 0};
+			
 			System.out.println("	Test fuer M8 * x = B8:\n");
 			x = Gauss.solveSing(testM8);
 			if(Util.vectorCompare(x, resultMB8)) {
@@ -200,6 +204,17 @@ public class Test {
 				Util.printVector(x);
 				System.out.println("            richtiges Ergebnis:");
 				Util.printVector(resultMB8);
+			}
+			
+			System.out.println("	Test fuer M9 * x = B9:\n");
+			x = Gauss.solveSing(testM9);
+			if(Util.vectorCompare(x, resultMB9)) {
+				System.out.println("		Richtiges Ergebnis zu M9 * x = B9\n");
+			} else {
+				System.out.println("    FEHLER: falsches Ergebnis:");
+				Util.printVector(x);
+				System.out.println("            richtiges Ergebnis:");
+				Util.printVector(resultMB9);
 			}
 			
 		}
@@ -243,6 +258,17 @@ public class Test {
 			double A_test[][] = PageRank.buildProbabilityMatrix(lm2.L, 0.15);
 			System.out.println("buildMatrix for A_test (File: test.txt) :");
 			Util.printMatrix(A_test);
+			
+			System.out.println("A_test[1][2]: "+ A_test[1][2]);
+			System.out.println("A_test[0][0]: "+ A_test[0][0]);
+			System.out.println("A_test[0][1]: "+ A_test[0][1]);
+			System.out.println("A_test[0][2]: "+ A_test[0][2]);
+			System.out.println("A_test[0][3]: "+ A_test[0][3]);
+			
+			System.out.println("\nRanks of test.txt webpages: ");
+			Util.printVector(PageRank.rank(lm2.L,0.15));
+			
+			//---------------------RANK---------------------
 			
 			System.out
 					.println("  primitiver und unvollstaendiger Test der Methode rank");

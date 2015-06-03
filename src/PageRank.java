@@ -33,7 +33,17 @@ public class PageRank {
 			}
 		}
 		
-		return resultMatrix;
+		double[][] transp_resMatrix = new double[L.length][L.length];
+		
+		// Transpose Matrix, since my arrays are sorted differently than in Linked List
+		// mine: [column][row] 
+		for(int i = 0; i < L.length; i++) {
+			for(int j = 0; j < L.length; j++) {
+				transp_resMatrix[j][i] = resultMatrix[i][j];
+			}
+		}
+		
+		return transp_resMatrix;
 	}
 
 	/**
@@ -48,8 +58,44 @@ public class PageRank {
 	 *      
 	 */
 	public static double[] rank(int[][] L, double rho) {
-		//TODO: Diese Methode ist zu implementieren
-		return new double[2];
+		if(L == null) {
+			double error[] = {0};
+			return error;
+		}
+		double[] result = new double[L.length];
+		
+		double[][] prob_matrix = new double[L.length][L[0].length];
+		prob_matrix = buildProbabilityMatrix(L,rho);
+		
+		/* Not sure if not needed
+		double[] p = new double[L.length];
+		
+		// fill vector p with probabilities, that site j
+		// is reached with probability of p[j]
+		for(int i = 0; i < L.length; i++) {
+			for(int j = 0; j < L.length; j++) {
+				p[i] += prob_matrix[j][i];
+			}
+		}
+		*/
+		// also create Matrix (A - I)
+		for(int i = 0; i < L.length; i++) {
+			prob_matrix[i][i] -= 1D;
+		}
+		
+		result = Gauss.solveSing(prob_matrix);
+		
+		// normieren der Ergebnisse
+		double sum = 0D;
+		for(int i = 0; i < result.length; i++) {
+			sum += result[i];
+		}
+		for(int i = 0; i < result.length; i++) {
+			result[i] /= sum;
+		}
+		
+		return result;
+		
 	}
 
 	/**

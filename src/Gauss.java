@@ -168,7 +168,7 @@ public class Gauss {
 				}
 			}
 			// matrix can't be solved by Gauss anymore
-			if(pivot_element == 0) {
+			if(Math.abs(pivot_element) <= 1E-10) {
 				T = new double[i][i];
 				v = new double[i];
 				
@@ -224,8 +224,8 @@ public class Gauss {
 			}
 		}
 		
-		double error[] = {0};
-		return error;
+		double null_vector[] = new double[A.length];
+		return null_vector;
 		
 	}
 
