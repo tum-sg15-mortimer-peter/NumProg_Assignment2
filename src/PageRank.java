@@ -58,7 +58,7 @@ public class PageRank {
 	 *      
 	 */
 	public static double[] rank(int[][] L, double rho) {
-		if(L == null) {
+		if(L == null || rho < 0 || rho > 1D) {
 			double error[] = {0};
 			return error;
 		}
@@ -67,17 +67,6 @@ public class PageRank {
 		double[][] prob_matrix = new double[L.length][L[0].length];
 		prob_matrix = buildProbabilityMatrix(L,rho);
 		
-		/* Not sure if not needed
-		double[] p = new double[L.length];
-		
-		// fill vector p with probabilities, that site j
-		// is reached with probability of p[j]
-		for(int i = 0; i < L.length; i++) {
-			for(int j = 0; j < L.length; j++) {
-				p[i] += prob_matrix[j][i];
-			}
-		}
-		*/
 		// also create Matrix (A - I)
 		for(int i = 0; i < L.length; i++) {
 			prob_matrix[i][i] -= 1D;

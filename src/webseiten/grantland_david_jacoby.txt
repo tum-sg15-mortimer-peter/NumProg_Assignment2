@@ -1,0 +1,23 @@
+11
+1 0 0 0 0 0 0 0 0 0 0 
+1 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+0 1 1 1 1 1 1 1 1 1 1 
+http://grantland.com
+http://grantland.com/contributors/david-jacoby/
+http://grantland.com/contributors/david-jacoby/#nav
+http://grantland.com/contributors/david-jacoby/#search
+http://grantland.com/contributors/david-jacoby/#
+http://grantland.com/contributors/david-jacoby/#columns
+http://grantland.com/contributors/david-jacoby/#podcasts
+http://grantland.com/contributors/david-jacoby/#videos
+http://grantland.com/contributors/david-jacoby/#most-popular-grantland_feature
+http://grantland.com/contributors/david-jacoby/#most-popular-grantland_sports
+http://grantland.com/contributors/david-jacoby/#most-popular-grantland_pop

@@ -252,11 +252,13 @@ public class Test {
 			// own additional test
 			
 			LinkMatrix lm2 = new LinkMatrix();
-			
 			lm2.read(".\\src\\webseiten\\test.txt");
 			
+			LinkMatrix lm3 = new LinkMatrix();
+			lm3.read(".\\src\\webseiten\\test2.txt");
+			
 			double A_test[][] = PageRank.buildProbabilityMatrix(lm2.L, 0.15);
-			System.out.println("buildMatrix for A_test (File: test.txt) :");
+			System.out.println("\nbuildMatrix for A_test (File: test.txt) :");
 			Util.printMatrix(A_test);
 			
 			System.out.println("A_test[1][2]: "+ A_test[1][2]);
@@ -268,6 +270,39 @@ public class Test {
 			System.out.println("\nRanks of test.txt webpages: ");
 			Util.printVector(PageRank.rank(lm2.L,0.15));
 			
+			double A2_test[][] = PageRank.buildProbabilityMatrix(lm3.L, 0);
+			System.out.println("\nbuildMatrix for A2_test (File: test2.txt) :");
+			Util.printMatrix(A2_test); 
+			
+			System.out.println("\nRanks of test2.txt webpages: ");
+			Util.printVector(PageRank.rank(lm3.L,0.15));
+			
+			// Links on grantland.com/contributors/david-jacoby/
+			
+			LinkMatrix lm4 = new LinkMatrix();
+			lm4.read(".\\src\\webseiten\\grantland_david_jacoby.txt");
+			
+			double A3_test[][] = PageRank.buildProbabilityMatrix(lm4.L, 0.15);
+			System.out.println("\nbuildMatrix for A3_test (File: grantland_david_jacoby.txt) :");
+			Util.printMatrix(A3_test); 
+			
+			System.out.println("\nRanks of grantland_david_jacoby.txt webpages: ");
+			Util.printVector(PageRank.rank(lm4.L,0.15));
+			
+			// Rather Read
+			/*
+			LinkMatrix lm5 = new LinkMatrix();
+			lm5.read(".\\src\\webseiten\\RatherRead.txt");
+			
+			double A4_test[][] = PageRank.buildProbabilityMatrix(lm5.L, 0.15);
+			System.out.println("\nbuildMatrix for A4_test (File: RatherRead.txt) :");
+			Util.printMatrix(A4_test); 
+			
+			System.out.println("\nRanks of RatherRead.txt webpages: ");
+			//Util.printVector(PageRank.rank(lm5.L,0.15));
+			
+			Util.printStringArray(PageRank.getSortedURLs(lm5.urls, lm5.L, 0.15));
+			*/
 			//---------------------RANK---------------------
 			
 			System.out
